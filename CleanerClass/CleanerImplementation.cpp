@@ -51,10 +51,36 @@ void CodeCleaner::Clean(){
                 matches = true;
             }
         }
-    }
 
+        if (matches){
+            if (currObject.is_directory(ec)){
+                if(ec){
+                    std::cout << "error checking directory " << currObjectPath << ec.message() << std::endl;
+                    ec.clear();
+                }
+                std::cout << "currently removing directory: " << currObjectPath << std::endl;
+                std::filesystem::remove_all(currObject,ec);
+                if(ec){
+                    std::cout << "error removing directory " << currObject << std::endl;
+                    ec.clear();
+                }
+                it.disable_recursion_pending();
+            }
+            else if(currObject.is_regular_file(ec)){
+                if(ec){
+                    std::cout << "error checking file " << currObjectFilename << ec.message() << std::endl;
+                    ec.clear();
+                }
+                std::filesystem::remove(currObject,ec);
+                if (ec){
+                    std::cout << "error error removing file " << currObjectFilename << ec.message() << std::endl;
+                    ec.clear();
+                }
+                
 
-
+            }
+        }
+    };
 
 }
 

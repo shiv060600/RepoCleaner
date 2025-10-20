@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-//#include "CleanerClass/CleanerDefiner.h"
+#include "CleanerClass/CleanerDefiner.h"
 using namespace std;
 
 int main() {
@@ -21,15 +21,13 @@ int main() {
     cout << "for contains, please enter C: containts: removes any file or dir that contains removal_key"<<endl;
     cin >> removalType;
 
+    CodeCleaner dirCleaner(rootDir,removalType,removalKey);
 
+    cout << "Beginning the cleaner" << endl;
 
+    dirCleaner.Clean();
 
-
-
-
-
-
-
+    cout << "Finished the cleaner" <<endl;
 
     return 0;
 }
