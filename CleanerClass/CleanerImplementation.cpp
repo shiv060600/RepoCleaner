@@ -84,4 +84,7 @@ void CodeCleaner::Clean(){
 
 }
 
+CodeCleaner::~CodeCleaner() {
+
+}
 
